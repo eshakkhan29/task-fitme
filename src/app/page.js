@@ -3,15 +3,17 @@ import Navbar from "@/components/common/Navbar";
 import Banner from "@/components/home/Banner";
 import Diets from "@/components/home/Diets";
 import Reviews from "@/components/home/Reviews";
-import { useEffect, useState } from "react";
+import { getDiet } from "@/redux/features/diets/DiestSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-    const [diets, setDiets] = useState([]);
+    const diets = useSelector((state) => state.diest?.diet)
+    console.log(diets)
+    const dispatch = useDispatch();
     useEffect(() => {
-        fetch("https://sandbox.psapi.co/random-pro")
-            .then((res) => res.json())
-            .then((data) => setDiets(data));
-    }, []);
+        dispatch(getDiet());
+    }, [])
     return (
         <div>
             <Navbar />

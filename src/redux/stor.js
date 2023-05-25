@@ -1,10 +1,12 @@
-import DiestSlice from "./diets/DiestSlice";
+import DiestSlice from "./features/diets/DiestSlice";
 
-const { configureStore } = require("@reduxjs/toolkit");
+const { configureStore, getDefaultMiddleware } = require("@reduxjs/toolkit");
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         diest: DiestSlice,
     },
-    
+    middleware: getDefaultMiddleware(),
+
 });
+export default store;
